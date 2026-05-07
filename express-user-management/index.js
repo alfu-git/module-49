@@ -1,6 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 8000;
+
+// middleware
+app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Homepage response");
@@ -54,8 +59,13 @@ app.get("/users", (req, res) => {
 });
 
 app.post("/users", (req, res) => {
-  console.log("Post request to the users page");
-  res.send("Post request to the users page");
+  console.log("req body: ", req.body);
+
+  const newUser = req.body;
+  newUser.id = users.length + 1;
+  users.push(newUser);
+
+  res.send({ success: true, data: newUser, message: "Post method is working" });
 });
 
 app.listen(port, () => {

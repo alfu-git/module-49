@@ -10,6 +10,7 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+import { redirect } from "next/navigation";
 
 const NewUserForm = () => {
   const onSubmit = async (e) => {
@@ -19,7 +20,7 @@ const NewUserForm = () => {
     const newUser = Object.fromEntries(formData.entries());
     console.log(newUser);
 
-    const res = fetch("http://localhost:8000/users", {
+    const req = await fetch("http://localhost:8000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,8 +28,12 @@ const NewUserForm = () => {
       body: JSON.stringify(newUser),
     });
 
-    const createdUser = await res.json();
-    console.log("created user", createdUser);
+    const res = await req.json();
+
+    if (res.success) {
+      alert("User created successfully");
+      redirect("/users");
+    }
   };
 
   return (
