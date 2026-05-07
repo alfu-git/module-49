@@ -1,0 +1,12 @@
+{
+  "name": "node-server",
+  "version": "0.0.1",
+  "description": "I am exploring node.js",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
