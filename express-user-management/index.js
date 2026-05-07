@@ -53,6 +53,11 @@ app.get("/users", (req, res) => {
   res.send(users);
 });
 
+app.post("/users", (req, res) => {
+  console.log("Post request to the users page");
+  res.send("Post request to the users page");
+});
+
 app.listen(port, () => {
   console.log(`express-user-management app listening on port ${port}`);
 });
